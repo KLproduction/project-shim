@@ -8,10 +8,10 @@ const app = new Hono().basePath("/api");
 const routes = app.route("/auth", auth).route("/workspaces", workspaces);
 
 interface RouteContextWithParams {
-  params?: Record<string, string>;
+  params?: Record<string, string | undefined>;
 }
 
-export const GET = handle(app as RouteContextWithParams | any);
-export const POST = handle(app as RouteContextWithParams | any);
+export const GET = handle(app as any);
+export const POST = handle(app as any);
 
 export type AppType = typeof routes;

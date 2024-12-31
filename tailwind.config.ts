@@ -19,7 +19,7 @@ export default {
         "5xl": "4.210rem",
       },
       fontFamily: {
-        heading: "Noto Sans Osmanya",
+        heading: "Inter",
         body: "Inter",
       },
       fontWeight: {

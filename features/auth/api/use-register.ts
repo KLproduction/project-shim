@@ -3,6 +3,7 @@ import { InferRequestType, InferResponseType } from "hono";
 import { client } from "@/lib/rpc";
 import { json } from "stream/consumers";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type ResponseType = InferResponseType<
   (typeof client.api.auth.register)["$post"]
@@ -23,6 +24,7 @@ export const useRegister = () => {
     },
     onError: (error) => {
       console.log(error);
+      toast.error("something went wrong, Failed to register");
     },
   });
 

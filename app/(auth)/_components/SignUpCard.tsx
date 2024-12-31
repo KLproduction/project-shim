@@ -26,7 +26,7 @@ const SignUpCard = (props: Props) => {
   } = useSignUp();
   return (
     <div>
-      <Card className="h-full w-full border-2 border-primary bg-primary-foreground shadow-none md:w-[400px]">
+      <Card className="h-full w-full border-2 border-primary shadow-none md:w-[400px]">
         <CardHeader className="flex items-center justify-center p-7 text-center">
           <CardTitle>Sign Up</CardTitle>
         </CardHeader>

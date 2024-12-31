@@ -4,6 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ReactQueryProvider } from "@/react-query/provider";
 import { ReduxProvider } from "@/redux/provider";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "next-themes";
+import type { AppProps } from "next/app";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,11 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ReduxProvider>
-        <ReactQueryProvider>
-          <body className={cn("min-h-screen antialiased")}>{children}</body>
-        </ReactQueryProvider>
-      </ReduxProvider>
+      <body className={cn("min-h-screen antialiased")}>
+        <ReduxProvider>
+          <ReactQueryProvider>
+            <Toaster />
+
+            {children}
+          </ReactQueryProvider>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

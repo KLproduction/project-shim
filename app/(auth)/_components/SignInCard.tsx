@@ -23,7 +23,7 @@ const SignInCard = (props: Props) => {
   const { register, onSubmit, errors, isPending } = useSignIn();
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <Card className="h-full w-full border-2 border-primary bg-primary-foreground shadow-none md:w-[400px]">
+      <Card className="h-full w-full border-2 border-primary bg-background shadow-none md:w-[400px]">
         <CardHeader className="flex items-center justify-center p-7 text-center">
           <CardTitle>Welcome Back</CardTitle>
         </CardHeader>
@@ -67,11 +67,11 @@ const SignInCard = (props: Props) => {
         <div className="px-7">
           <DottedSeparator />
           <CardContent className="flex flex-col items-center justify-center gap-4 p-7">
-            <Button variant={"secondary"} className="flex w-full items-center">
+            <Button variant={"default"} className="flex w-full items-center">
               <AiOutlineGoogle />
               Login with Google
             </Button>
-            <Button variant={"secondary"} className="flex w-full items-center">
+            <Button variant={"default"} className="flex w-full items-center">
               <AiOutlineGithub />
               Login with GitHub
             </Button>

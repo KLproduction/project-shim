@@ -1,3 +1,4 @@
+import { min } from "date-fns";
 import { z } from "zod";
 
 export const signInSchema = z.object({
@@ -30,7 +31,7 @@ export const signUpSchema = z
       .max(20, "Password must be at most 20 characters long.")
       .regex(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-        "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character."
+        "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
       )
       .nonempty("Password is required."),
     confirmPassword: z.string().nonempty("Confirm password is required."),
@@ -39,3 +40,12 @@ export const signUpSchema = z
     path: ["confirmPassword"], // Path of the error
     message: "Passwords must match.",
   });
+export const createWorkspaceSchema = z.object({
+  name: z.string().trim().min(1, "Workspace name is required"),
+  image: z
+    .union([
+      z.instanceof(File),
+      z.string().transform((url) => (url === "" ? undefined : url)),
+    ])
+    .optional(),
+});

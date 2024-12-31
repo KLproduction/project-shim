@@ -9,16 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useCurrent } from "@/features/auth/api/use-current";
-import MyLoader from "./loader/MyLoader";
 import { Loader, LogOut } from "lucide-react";
 import DottedSeparator from "./DottedSeparator";
-import { Button } from "../ui/button";
 
 type Props = {};
 
 const UserButton = (props: Props) => {
   const { data: user, isLoading } = useCurrent();
-  const { mutate: useLogOut } = useLogout();
+  const { mutate: logout } = useLogout();
 
   if (isLoading) {
     return (
@@ -64,7 +62,7 @@ const UserButton = (props: Props) => {
           <DottedSeparator className="mb-1" />
           <DropdownMenuItem
             className="flex h-10 w-full cursor-pointer items-center justify-center font-medium"
-            onClick={() => useLogOut()}
+            onClick={() => logout()}
           >
             <LogOut className="size-4" />
             Log Out

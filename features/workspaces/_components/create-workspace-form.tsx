@@ -7,9 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCreateWorkspace } from "@/hooks/workspace";
+import { cn } from "@/lib/utils";
 import { get } from "http";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -29,6 +31,8 @@ export const CreateWorkspaceForm = ({ onCancel }: Props) => {
     watch,
   } = useCreateWorkspace();
 
+  const pathname = usePathname();
+  const isCreatePage = pathname === "/workspaces/create";
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const imageUrl = watch("image");
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,7 +108,7 @@ export const CreateWorkspaceForm = ({ onCancel }: Props) => {
             size={"sm"}
             disabled={isPending}
             className="mt-2 w-fit"
-            variant={"muted"}
+            variant={"outline"}
             onClick={() => imgInputRef.current?.click()}
           >
             Choose Image
@@ -112,13 +116,19 @@ export const CreateWorkspaceForm = ({ onCancel }: Props) => {
 
           <DottedSeparator className="p-7" />
 
-          <div className="flex w-full items-center justify-between">
+          <div
+            className={cn(
+              "flex w-full items-center",
+              isCreatePage ? "justify-center" : "justify-between",
+            )}
+          >
             <Button
               onClick={onCancel}
               type="button"
               variant={"outline"}
               size={"lg"}
               disabled={isPending}
+              className={cn(isCreatePage ? "hidden" : "")}
             >
               Cancel
             </Button>

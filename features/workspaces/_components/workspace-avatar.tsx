@@ -30,8 +30,10 @@ const WorkspaceAvatar = ({ image, name, className }: Props) => {
 
   return (
     <Avatar className={cn("size-10", className)}>
-      <AvatarFallback className="flex items-center justify-center">
-        <p className="bg-green-500">{name[0].toUpperCase()}</p>
+      <AvatarFallback className="flex items-center justify-center bg-green-500">
+        <p className="text-xl font-black text-zinc-50">
+          {name[0].toUpperCase()}
+        </p>
       </AvatarFallback>
     </Avatar>
   );

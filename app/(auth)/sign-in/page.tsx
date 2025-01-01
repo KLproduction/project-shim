@@ -9,7 +9,7 @@ const SignInPage = async (props: Props) => {
   const user = await getCurrent();
 
   if (user?.status === 200) {
-    redirect("/");
+    redirect("/callback");
   }
   return (
     <div className="flex min-h-screen w-full items-center justify-center">

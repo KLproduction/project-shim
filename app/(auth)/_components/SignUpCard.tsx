@@ -91,7 +91,7 @@ const SignUpCard = (props: Props) => {
           <div>
             <span className="text-xs">{`Already have an account?`}</span>
             <Link href="/sign-in">
-              <Button variant={"link"} size={"xs"}>
+              <Button variant={"link"} size={"sm"}>
                 Sign In
               </Button>
             </Link>

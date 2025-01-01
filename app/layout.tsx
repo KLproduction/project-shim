@@ -7,6 +7,7 @@ import { ReduxProvider } from "@/redux/provider";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
+import AuthNavBar from "./(auth)/_components/AuthNavBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",

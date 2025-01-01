@@ -32,7 +32,7 @@ const UserButton = (props: Props) => {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="relative outline-none">
         <Avatar className="size-10 border border-neutral-300 transition-all hover:opacity-75">
-          <AvatarFallback className="flex items-center justify-normal bg-zinc-200 font-medium text-zinc-500">
+          <AvatarFallback className="flex items-center justify-normal bg-green-500 font-medium text-zinc-50">
             <div className="flex h-full w-full items-center justify-center">
               {avatarFallback}
             </div>
@@ -47,7 +47,7 @@ const UserButton = (props: Props) => {
       >
         <div className="flex flex-col items-center justify-center gap-2 px-2 py-4">
           <Avatar className="size-[52px] border-2 border-zinc-300 text-xl transition-all">
-            <AvatarFallback className="flex items-center justify-normal bg-zinc-200 font-medium text-zinc-500">
+            <AvatarFallback className="flex items-center justify-normal bg-green-500 font-medium text-zinc-50">
               <div className="flex h-full w-full items-center justify-center">
                 {avatarFallback}
               </div>

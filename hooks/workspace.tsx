@@ -6,6 +6,8 @@ import { z } from "zod";
 import { InferRequestType, InferResponseType } from "hono";
 import { client } from "@/lib/rpc";
 import { toast } from "sonner";
+import { useQueryState, parseAsBoolean } from "nuqs";
+import { useRouter } from "next/navigation";
 
 export const useWorkspaceForm = () => {};
 
@@ -14,16 +16,18 @@ type RequestType = InferRequestType<(typeof client.api.workspaces)["$post"]>;
 
 export const useCreateWorkspace = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
+
   const { mutate, isPending } = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async ({ form }) => {
       const response = await client.api.workspaces["$post"]({ form });
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       queryClient.invalidateQueries({ queryKey: ["workspaces"] });
       toast.success("workspace created");
+      router.push(`/workspaces/${data.$id}`);
       reset();
-      // router.push("/workspaces");
     },
     onError: (error) => {
       toast.error(
@@ -81,4 +85,19 @@ export const useGetWorkspaces = () => {
     },
   });
   return query;
+};
+
+export const useCreateWorkspaceModel = () => {
+  const [isOpen, setIsOpen] = useQueryState(
+    "create-workspace",
+    parseAsBoolean.withDefault(false).withOptions({ clearOnDefault: true }),
+  );
+  const open = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
+  return {
+    isOpen,
+    open,
+    close,
+    setIsOpen,
+  };
 };

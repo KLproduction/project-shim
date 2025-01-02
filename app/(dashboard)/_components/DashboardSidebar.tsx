@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import SideBarNavigation from "./SideBarNavigation";
 import WorkspaceSwitcher from "./WorkspaceSwitcher";
+import Projects from "./Projects";
 
 type Props = {};
 
@@ -17,6 +18,8 @@ const DashboardSidebar = (props: Props) => {
       <WorkspaceSwitcher />
       <DottedSeparator className="my-4" />
       <SideBarNavigation />
+      <DottedSeparator className="my-4" />
+      <Projects />
     </aside>
   );
 };

@@ -103,16 +103,29 @@ export const CreateWorkspaceForm = ({ onCancel }: Props) => {
             accept=".jpg, .jpeg, .png, .svg"
             disabled={isPending}
           />
-          <Button
-            type="button"
-            size={"sm"}
-            disabled={isPending}
-            className="mt-2 w-fit"
-            variant={"outline"}
-            onClick={() => imgInputRef.current?.click()}
-          >
-            Choose Image
-          </Button>
+          {watch("image") === undefined ? (
+            <Button
+              type="button"
+              size={"sm"}
+              disabled={isPending}
+              className="mt-2 w-fit"
+              variant={"outline"}
+              onClick={() => imgInputRef.current?.click()}
+            >
+              Choose Image
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              size={"sm"}
+              disabled={isPending}
+              className="mt-2 w-fit"
+              variant={"outline"}
+              onClick={() => setValue("image", undefined)}
+            >
+              Remove Image
+            </Button>
+          )}
 
           <DottedSeparator className="p-7" />
 

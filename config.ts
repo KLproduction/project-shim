@@ -6,3 +6,4 @@ export const BUCKET_IMAGE_ID = process.env
   .NEXT_PUBLIC_APPWRITE_BUCKET_IMAGES_ID as string;
 export const MEMBER_ID = process.env
   .NEXT_PUBLIC_APPWRITE_MEMBERSHIP_ID as string;
+export const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string;

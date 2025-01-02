@@ -1,4 +1,4 @@
-import { getCurrent, getWorkspace } from "@/action/auth-action";
+import { getCurrent, getWorkspaces } from "@/action/auth-action";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -13,7 +13,7 @@ const WorkspacePage = async ({ params }: Props) => {
   if (user?.status !== 200) {
     redirect("/sign-in");
   }
-  const workspace = await getWorkspace();
+  const workspace = await getWorkspaces();
   if (workspace?.workspaces?.total === 0) {
     redirect("/workspaces/create");
   }

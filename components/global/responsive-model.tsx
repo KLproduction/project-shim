@@ -1,7 +1,7 @@
 import { useMedia } from "react-use";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { Dialog, DialogContent } from "../ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 type Props = {
   children: React.ReactNode;
   isOpen: boolean;
@@ -13,7 +13,9 @@ const ResponsiveModel = ({ children, isOpen, onOpenChange }: Props) => {
   if (isDesktop) {
     return (
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
-        <DialogTitle></DialogTitle>
+        <DialogTitle>
+          <DialogDescription></DialogDescription>
+        </DialogTitle>
         <DialogContent className="hide-scrollbar max-h-[85vh] w-full overflow-y-auto border-none p-0 sm:max-w-lg">
           {children}
         </DialogContent>
@@ -23,7 +25,9 @@ const ResponsiveModel = ({ children, isOpen, onOpenChange }: Props) => {
 
   return (
     <Drawer open={isOpen} onOpenChange={onOpenChange}>
-      <DrawerTitle></DrawerTitle>
+      <DrawerTitle>
+        <DialogDescription></DialogDescription>
+      </DrawerTitle>
       <DrawerContent>
         <div className="hide-scrollbar max-h-[85vh] overflow-y-auto">
           {children}

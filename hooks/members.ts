@@ -2,6 +2,7 @@
 
 import { client } from "@/lib/rpc";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { error } from "console";
 import { InferRequestType, InferResponseType } from "hono";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -81,12 +82,18 @@ type UseGetMembersProps = {
   workspaceId: string;
 };
 export const useGetMembers = ({ workspaceId }: UseGetMembersProps) => {
+  const router = useRouter();
   const query = useQuery({
     queryKey: ["members", workspaceId],
     queryFn: async () => {
       const response = await client.api.members["$get"]({
         query: { workspaceId },
       });
+      if (response.status === 401) {
+        toast.error("Unauthorized, not the workspace member");
+        router.push("/callback");
+        throw new Error("Unauthorized");
+      }
       if (!response.ok) {
         throw new Error("Failed to fetch members");
       }

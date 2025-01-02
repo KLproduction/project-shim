@@ -58,3 +58,14 @@ export const updateWorkspaceSchema = z.object({
     ])
     .optional(),
 });
+
+export const createProjectSchema = z.object({
+  name: z.string().trim().min(1, "Project name is required"),
+  image: z
+    .union([
+      z.instanceof(File),
+      z.string().transform((url) => (url === "" ? undefined : url)),
+    ])
+    .optional(),
+  workspaceId: z.string(),
+});

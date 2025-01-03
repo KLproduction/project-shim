@@ -9,14 +9,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiAddCircleFill } from "react-icons/ri";
 
-type Props = {};
-
-const Projects = (props: Props) => {
-  const projectId = null;
+const Projects = () => {
   const pathname = usePathname();
   const workspaceId = useWorkspaceId();
   const { data } = useGetProjects({ workspaceId: workspaceId });
-  const { close, isOpen, setIsOpen } = useCreateProjectModel();
+  const { setIsOpen } = useCreateProjectModel();
   return (
     <div>
       <CreateProjectModel />
@@ -31,7 +28,7 @@ const Projects = (props: Props) => {
         />
       </div>
       {data?.documents.map((project) => {
-        const href = `/workspaces/${workspaceId}/projects/${project.id}`;
+        const href = `/workspaces/${workspaceId}/projects/${project.$id}`;
         const isActive = pathname === href;
         return (
           <Link href={href} key={project.id}>
@@ -43,7 +40,12 @@ const Projects = (props: Props) => {
                   : "",
               )}
             >
-              <ProjectAvatar image={project.imageURL} name={project.name} />
+              <ProjectAvatar
+                image={project.imageURL}
+                name={project.name}
+                className="size-5"
+                fallbackClassName="size-5"
+              />
               <span className="truncate">{project.name}</span>
             </div>
           </Link>

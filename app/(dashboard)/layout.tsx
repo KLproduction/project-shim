@@ -11,7 +11,7 @@ type Props = {
 const DashboardLayout = ({ children }: Props) => {
   return (
     <NuqsAdapter>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full bg-zinc-100">
         <CreateWorkspaceModel />
         <div className="flex h-full w-full">
           <div className="fixed left-0 top-0 hidden h-full overflow-y-auto lg:block lg:w-[264px]">

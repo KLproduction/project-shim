@@ -1,7 +1,8 @@
 "use server";
 
-import { DATABASE_ID, MEMBER_ID, WORKSPACES_ID } from "@/config";
+import { DATABASE_ID, MEMBER_ID, PROJECT_ID, WORKSPACES_ID } from "@/config";
 import { AUTH_COOKIE } from "@/features/auth/constants";
+import { Project } from "@/features/projects/type";
 import { Workspace } from "@/features/workspaces/type";
 import { cookies } from "next/headers";
 import { Account, Client, Databases, Query } from "node-appwrite";
@@ -175,4 +176,56 @@ export const getMember = async ({
   return {
     status: 404,
   };
+};
+
+type GetProjectProps = {
+  projectId: string;
+};
+export const getProject = async ({ projectId }: GetProjectProps) => {
+  try {
+    const client = new Client()
+      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string)
+      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT as string);
+
+    const session = (await cookies()).get(AUTH_COOKIE);
+    if (session) {
+      client.setSession(session.value);
+      const account = new Account(client);
+      const user = await account.get();
+      const databases = new Databases(client);
+
+      const project = await databases.getDocument<Project>(
+        DATABASE_ID,
+        PROJECT_ID,
+        projectId,
+      );
+      const member = await getMember({
+        databases,
+        workspaceId: project.workspaceId,
+        userId: user.$id,
+      });
+
+      if (!member) {
+        return {
+          status: 404,
+        };
+      }
+
+      if (project) {
+        return {
+          status: 200,
+          project,
+        };
+      }
+
+      return {
+        status: 404,
+      };
+    }
+    return {
+      status: 404,
+    };
+  } catch (e) {
+    return null;
+  }
 };

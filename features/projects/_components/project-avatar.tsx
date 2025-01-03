@@ -21,7 +21,7 @@ const ProjectAvatar = ({
       <div
         className={cn(
           className,
-          "relative size-5 overflow-hidden rounded-md ring-2 ring-green-500",
+          "relative overflow-hidden rounded-md ring-2 ring-green-500",
         )}
       >
         <Image
@@ -35,7 +35,7 @@ const ProjectAvatar = ({
   }
 
   return (
-    <Avatar className={cn("size-5", className)}>
+    <Avatar className={cn("", className)}>
       <AvatarFallback
         className={cn(
           "flex items-center justify-center bg-green-500",

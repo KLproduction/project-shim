@@ -22,6 +22,7 @@ const WorkspaceSwitcher = (props: Props) => {
     router.push(`/workspaces/${workspaceId}`);
   };
   const { open } = useCreateWorkspaceModel();
+  console.log(params);
 
   return (
     <div className="flex flex-col gap-2">

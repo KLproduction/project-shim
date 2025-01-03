@@ -108,6 +108,19 @@ const app = new Hono()
       let uploadedImageUrl: string | undefined;
 
       if (image instanceof File) {
+        const allowedTypes = ["image/jpeg", "image/png", "image/svg+xml"];
+        if (!allowedTypes.includes(image.type)) {
+          return c.json(
+            {
+              error:
+                "Invalid file type. Only JPG, PNG, JPEG, and SVG are allowed",
+            },
+            400,
+          );
+        }
+        if (image.size > 1048576) {
+          return c.json({ error: "File size exceeds 1 MB limit" }, 400);
+        }
         const file = await storage.createFile(
           BUCKET_IMAGE_ID,
           ID.unique(),

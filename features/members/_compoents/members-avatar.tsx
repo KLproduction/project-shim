@@ -19,11 +19,11 @@ const MemberAvatar = ({ name, className, fallbackClassName }: Props) => {
     >
       <AvatarFallback
         className={cn(
-          "flex items-center justify-center bg-green-500",
+          "flex items-center justify-center bg-zinc-500",
           fallbackClassName,
         )}
       >
-        <p className="text-xl font-black text-zinc-50">
+        <p className="font-black text-zinc-50">
           {name.charAt(0).toUpperCase()}
         </p>
       </AvatarFallback>

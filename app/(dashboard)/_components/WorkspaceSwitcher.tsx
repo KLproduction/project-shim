@@ -22,7 +22,6 @@ const WorkspaceSwitcher = (props: Props) => {
     router.push(`/workspaces/${workspaceId}`);
   };
   const { open } = useCreateWorkspaceModel();
-  console.log(params);
 
   return (
     <div className="flex flex-col gap-2">
@@ -40,7 +39,7 @@ const WorkspaceSwitcher = (props: Props) => {
         onValueChange={onSelect}
         value={(params.workspacesId as string) || undefined}
       >
-        <SelectTrigger className="w-full bg-zinc-200 p-1 font-medium">
+        <SelectTrigger className="my-4 w-full bg-zinc-200 p-1 font-medium">
           <SelectValue placeholder="No workspace selected" />
         </SelectTrigger>
         <SelectContent>

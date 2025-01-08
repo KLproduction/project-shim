@@ -17,7 +17,7 @@ const Projects = () => {
   return (
     <div>
       <CreateProjectModel />
-      <div className="flex items-center justify-between">
+      <div className="my-4 flex items-center justify-between">
         <p className="text-sm font-semibold uppercase text-zinc-800">
           Projects
         </p>

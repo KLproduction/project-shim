@@ -2,9 +2,13 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Task } from "../../types";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, MoreVertical } from "lucide-react";
 import ProjectAvatar from "@/features/projects/_components/project-avatar";
-import MemberAvatar from "@/features/members/_compoents/members-avatar";
+import MemberAvatar from "@/features/members/_components/members-avatar";
+import TaskDate from "./task-date";
+import { Badge } from "@/components/ui/badge";
+import { transformStatus } from "@/lib/utils";
+import { TaskAction } from "./task-action";
 export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "name",
@@ -93,10 +97,38 @@ export const columns: ColumnDef<Task>[] = [
     },
     cell: ({ row }) => {
       const dueDate = row.original.dueDate;
+      return <TaskDate value={dueDate} />;
+    },
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => {
       return (
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <p className="line-clamp-1">{/* <TaskDate value={dueDate} /> */}</p>
-        </div>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Due Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const status = row.original.status;
+      return <Badge variant={status}>{transformStatus(status)}</Badge>;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const id = row.original.$id;
+      const projectId = row.original.projectId;
+      return (
+        <TaskAction id={id} projectId={projectId}>
+          <Button variant={"ghost"} className="size-8 p-0">
+            <MoreVertical className="size-4" />
+          </Button>
+        </TaskAction>
       );
     },
   },

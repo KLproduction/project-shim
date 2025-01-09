@@ -1,5 +1,5 @@
 import { getCurrent } from "@/action/auth-action";
-import MembersList from "@/features/members/_compoents/members-list";
+import MembersList from "@/features/members/_components/members-list";
 import { useGetMembers } from "@/hooks/members";
 import { get } from "http";
 import { redirect } from "next/navigation";

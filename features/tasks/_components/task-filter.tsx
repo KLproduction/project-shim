@@ -25,7 +25,7 @@ import { useWorkspaceId } from "@/features/workspaces/api/use-workplaceId";
 import { useGetMembers } from "@/hooks/members";
 import MyLoader from "@/components/global/loader/MyLoader";
 import { useTaskFilter } from "@/hooks/tasks";
-import MemberAvatar from "@/features/members/_compoents/members-avatar";
+import MemberAvatar from "@/features/members/_components/members-avatar";
 import DatePicker from "@/components/global/date-picker";
 
 type Props = {

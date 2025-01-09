@@ -1,6 +1,7 @@
 import { getCurrent, getProject } from "@/action/auth-action";
 import { Button } from "@/components/ui/button";
 import ProjectAvatar from "@/features/projects/_components/project-avatar";
+import EditTaskModel from "@/features/tasks/_components/edit-task-model";
 import TaskViewSwitcher from "@/features/tasks/_components/task-veiw-switcher";
 import { PencilIcon } from "lucide-react";
 import Link from "next/link";
